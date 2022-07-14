@@ -1,0 +1,94 @@
+body{
+    background-color: #2BE312;
+}
+#imagen{
+    position: absolute;
+    height: 635px;
+    width: 1350px;
+    z-index: -1;
+}
+.contenedor{
+    height: 500px;
+    width: 700px;
+    margin:5px auto;
+    background-color: rgba(128, 235, 29, 0.507);
+}
+.hoyo1{
+    position: relative;
+    top: 10px;
+    left: 50px;
+    right: ;
+    bottom: ;
+}
+.hoyo2{
+    position: relative;
+    top: -50px;
+    left: 250px;
+}
+.hoyo3{
+    position: relative;
+    left: 450px;
+    top: -200px;
+}
+.hoyo4{
+    position: relative;
+    top: -150px;
+    left: 60px;
+}
+.hoyo5{
+    position: relative;
+    top: -150px;
+    left: 260px;
+}
+.hoyo6{
+    position: relative;
+    top: -220px;
+    left: 490px;
+}
+.img{
+    border-radius: 400px;
+}
+.btn{
+    height: 30px;
+    width: 60px;
+}
+.textoSelector{
+    background-color: #F8FF21;
+    position: relative;
+    top: -650px;
+    left: -300px;
+}
+.seleccionarDificultad{
+    background-color: hsl(240, 36%, 76%);
+    position: relative;
+    top: -650px;
+    left: -300px;
+}
+.btnIniciar{
+    background-color: hsl(0, 87%, 64%);
+    position: relative;
+    top: -650px;
+    left: -300px;  
+}
+.puntos{
+    height: 30px;
+    width: 80px;
+    background-color: hsl(0, 17%, 45%);
+    position: relative;
+    top: -650px;
+    left: -300px;  
+}
+.puntos{
+
+    top: -650px;
+    left: -300px; 
+    z-index: 2; 
+}
+.titulo{
+    height: 40px;
+    width: 300px;
+    background-color: white;
+    position: relative;
+    top: -880px;
+    left: 180px;
+}

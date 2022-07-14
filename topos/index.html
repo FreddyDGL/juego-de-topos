@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Topos</title>
+    <link rel="icon" href="images/icono.png">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <img src="images/pasto.jpg" id="imagen" alt="neutral">
+
+    <div class="contenedor">
+
+        <div class="fondo">
+            <div class="tablero">
+                <div class="hoyo1">
+                    <img src="images/hoyo.png" id="imagen1" class="img" height="110" width="130">
+                    <input type="button" class="btn" id="btnHoyo1" disabled>
+                </div>
+                <div class="hoyo2">
+                    <img src="images/hoyo.png" id="imagen2" class="img" height="110" width="130">
+                    <input type="button" class="btn" id="btnHoyo2" disabled>
+                </div>
+                <div class="hoyo3">
+                    <img src="images/hoyo.png" id="imagen3" class="img" height="110" width="130">
+                    <input type="button" class="btn" id="btnHoyo3" disabled>
+                </div>
+                <div class="hoyo4">
+                    <img src="images/hoyo.png" id="imagen4" class="img" height="110" width="130">
+                    <input type="button" class="btn" id="btnHoyo4" disabled>
+                </div>
+                <div class="hoyo5">
+                    <img src="images/hoyo.png" id="imagen5" class="img" height="110" width="130">
+                    <input type="button" class="btn" id="btnHoyo5" disabled>
+                </div>
+                <div class="hoyo6">
+                    <img src="images/hoyo.png" id="imagen6" class="img" height="110" width="130">
+                    <input type="button" class="btn" id="btnHoyo6" disabled>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <label class="textoSelector">Seleccionar Dificultad</label>
+        </div>
+        <select class="seleccionarDificultad" id="dificultad">
+            <option value="3000">Facil</option>
+            <option value="2000">Medio</option>
+            <option value="900">Dificil</option>
+        </select>
+
+        <div class="contenedorBtn">
+            <input type="button" class="btnIniciar" id="btnIniciar" value="STAR">
+        </div>
+        <div>
+            <h4 class="puntos">PUNTAJE:</h4>
+        </div>
+
+        <div class="puntaje">
+            <input type="text" id="puntos" value="0" class="puntos" readonly>
+            <!-- <input type="button" id="prueba" value="prueba"> -->
+        </div>
+        <div class="titulo">
+            <h1>JUEGO DE TOPOS</h1>
+        </div>
+
+</head>
+
+<body>
+    <script>
+        var puntos = 0;
+        var velocidad;
+        var img = "topo"
+        var numeroAleatorio;
+        var fin = 0;
+
+        btnIniciar = document.getElementById('btnIniciar');
+        btnHoyo1 = document.getElementById("btnHoyo1");
+        btnHoyo2 = document.getElementById("btnHoyo2");
+        btnHoyo3 = document.getElementById("btnHoyo3");
+        btnHoyo4 = document.getElementById("btnHoyo4");
+        btnHoyo5 = document.getElementById("btnHoyo5");
+        btnHoyo6 = document.getElementById("btnHoyo6");
+
+        btnIniciar.addEventListener("click", function () {
+            iniciarJuego();
+        });
+
+        btnHoyo1.addEventListener("click", function () {
+            actualizarPuntos();
+            clickDesactivar1();
+            quitarImg();
+        });
+
+        btnHoyo2.addEventListener("click", function () {
+            actualizarPuntos();
+            clickDesactivar2();
+            quitarImg();
+        });
+
+        btnHoyo3.addEventListener("click", function () {
+            actualizarPuntos();
+            clickDesactivar3();
+            quitarImg();
+        });
+
+        btnHoyo4.addEventListener("click", function () {
+            actualizarPuntos();
+            clickDesactivar4();
+            quitarImg();
+        });
+
+        btnHoyo5.addEventListener("click", function () {
+            actualizarPuntos();
+            clickDesactivar5();
+            quitarImg();
+        });
+
+        btnHoyo6.addEventListener("click", function () {
+            actualizarPuntos();
+            clickDesactivar6();
+            quitarImg();
+        });
+
+        //actualizar puntos
+        function actualizarPuntos() {
+            let puntos = document.getElementById("puntos").value;
+            puntos = parseInt(puntos) + 1;
+            document.getElementById("puntos").value = puntos;
+            puntos = puntos;
+            fin = puntos;
+        }
+
+        function seleccionarDificultad() {
+            let dificultad = document.getElementById("dificultad").value;
+            velocidad = dificultad;
+            console.log(velocidad);
+        }
+        function iniciarJuego() {
+            seleccionarDificultad();
+            clickDesactivarDificultad();
+            let tiempo = setTimeout(() => {
+                numeroRandom();
+                ponerImg();
+                let tiempo2 = setTimeout(() => {
+                    quitarImg();
+                    clickDesactivarTodos();
+                    repetir();
+                }, velocidad);
+            }, velocidad);
+
+        }
+        function repetir() {
+            if (fin < 5) {
+                iniciarJuego();
+            } else {
+                alert("Ganaste");
+            }
+        }
+        function numeroRandom() {
+            let numero = Math.floor(Math.random() * 6) + 1;
+            numeroAleatorio = numero;
+        }
+        function ponerImg() {
+            let v1 = document.getElementById("imagen" + numeroAleatorio).src = "images/topo.png";
+            activadorBtn();
+        }
+
+        function quitarImg() {
+            let v1 = document.getElementById("imagen" + numeroAleatorio).src = "images/hoyo.png";
+        }
+
+        function clickDesactivarDificultad(boton) {
+            btnIniciar.disabled = true;
+            dificultad.disabled = true;
+        }
+        function activadorBtn() {
+            switch (numeroAleatorio) {
+                case 1:
+                    clickActivar1();
+                    break;
+                case 2:
+                    clickActivar2();
+                    break;
+                case 3:
+                    clickActivar3();
+                    break;
+                case 4:
+                    clickActivar4();
+                    break;
+                case 5:
+                    clickActivar5();
+                    break;
+                case 6:
+                    clickActivar6();
+                    break;
+                default:
+                    break;
+            }
+        }
+        function clickActivar1(boton) {
+            btnHoyo1.disabled = false;
+        }
+
+        function clickActivar2(boton) {
+            btnHoyo2.disabled = false;
+        }
+
+        function clickActivar3(boton) {
+            btnHoyo3.disabled = false;
+        }
+
+        function clickActivar4(boton) {
+            btnHoyo4.disabled = false;
+        }
+
+        function clickActivar5(boton) {
+            btnHoyo5.disabled = false;
+        }
+
+        function clickActivar6(boton) {
+            btnHoyo6.disabled = false;
+        }
+
+        function clickDesactivarTodos(boton) {
+            switch (numeroAleatorio) {
+                case 1:
+                    clickDesactivar1();
+                    break;
+                case 2:
+                    clickDesactivar2();
+                    break;
+                case 3:
+                    clickDesactivar3();
+                    break;
+                case 4:
+                    clickDesactivar4();
+                    break;
+                case 5:
+                    clickDesactivar5();
+                    break;
+                case 6:
+                    clickDesactivar6();
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        function clickDesactivar1(boton) {
+            btnHoyo1.disabled = true;
+        }
+
+        function clickDesactivar2(boton) {
+            btnHoyo2.disabled = true;
+        }
+
+        function clickDesactivar3(boton) {
+            btnHoyo3.disabled = true;
+        }
+
+        function clickDesactivar4(boton) {
+            btnHoyo4.disabled = true;
+        }
+
+        function clickDesactivar5(boton) {
+            btnHoyo5.disabled = true;
+        }
+
+        function clickDesactivar6(boton) {
+            btnHoyo6.disabled = true;
+        }
+    </script>
+</body>
+
+</html>
